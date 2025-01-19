@@ -1,7 +1,8 @@
 version: 0.2
-phases:
+env:
   variables:
     ECR_REPO_NAME: "docker-example-app"
+phases:
   pre_build:
     commands:
       # Dockerhub Login
