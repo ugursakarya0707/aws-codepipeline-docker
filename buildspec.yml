@@ -5,8 +5,11 @@ env:
 phases:
   pre_build:
     commands:
-      # Dockerhub Login
-      - echo ${DOCKERHUB_TOKEN} | docker login -u ${DOCKERHUB_USER} --password-stdin
+      # Dockerhub Login vardı. Bu kod ile - echo ${DOCKERHUB_TOKEN} | docker login -u ${DOCKERHUB_USER} --password-stdin ancak ecr public gallery sayesinde base docker imageları seçtiğimiz için docker hub login kodunu kaldırdık
+      # Dcoker login yerine ECR Public gallery login geldi.
+       - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
+
+
 
       # ECR Login
       # 715841364973.dkr.ecr.us-east-1.amazonaws.com ifadesi ilgili ECR repo url ninden alınmalı.
